@@ -1,0 +1,41 @@
+{
+  "name": "store-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./build/index.js",
+    "start:dev": "nodemon --exec babel-node ./src/index.js",
+    "build": "babel -d build/ src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:init": "sequelize init --force",
+    "db:migrate": "sequelize db:migrate",
+    "db:unmigrate": "sequelize db:migrate:undo:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniellamarr/store-admin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniellamarr/store-admin/issues"
+  },
+  "homepage": "https://github.com/daniellamarr/store-admin#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "nodemon": "^2.0.4"
+  }
+}
