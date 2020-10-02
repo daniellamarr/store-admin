@@ -1,3 +1,4 @@
+import {Op} from 'sequelize';
 import {User} from '../../db/models';
 
 const CREATE = async (req, res) => {
@@ -12,6 +13,22 @@ const CREATE = async (req, res) => {
       address
     }
 
+    const findUser = await User.findOne({
+      where: {
+        [Op.or]: [
+          {customerId},
+          {email}
+        ]
+      }
+    });
+
+    if (findUser) {
+      return res.status(400).send({
+        success: false,
+        message: 'User already exists'
+      });
+    }
+
     await User.create(data);
 
     return res.status(201).send({
@@ -20,7 +37,6 @@ const CREATE = async (req, res) => {
       data
     });
   } catch (err) {
-    console.log(err)
     return res.status(500).send({
       success: false,
       message: 'Something went wrong on the server'

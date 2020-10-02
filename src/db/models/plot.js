@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   Plot.init({
     plotNumber: DataTypes.STRING,
     estate: DataTypes.STRING,
-    userId: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
     estateAddress: DataTypes.STRING,
     plotDimensions: DataTypes.STRING
   }, {

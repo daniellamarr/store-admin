@@ -17,7 +17,7 @@ module.exports = {
     username: DB_USER,
     password: DB_PASSWORD,
     database: DEV_DB_NAME,
-    host: 'lallah.db.elephantsql.com',
+    host: '127.0.0.1',
     dialect: 'postgres'
   },
   test: {

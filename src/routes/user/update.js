@@ -21,7 +21,7 @@ const UPDATE = async (req, res) => {
       address: address || findUser.address
     }
 
-    await User.update({where: {customerId}});
+    await User.update(data, {where: {customerId}});
 
     return res.status(200).send({
       success: true,

@@ -1,40 +1,36 @@
 import {User, Plot} from '../../db/models';
 
-const CREATE = async (req, res) => {
+const REALLOCATE = async (req, res) => {
   try {
-    const {plotNumber, plotDimensions, estate, estateAddress, customerId} = req.body;
+    const {customerId, plotNumber} = req.body;
 
     const findUser = await User.findOne({where: {customerId}});
 
     if (!findUser) {
       return res.status(404).send({
         success: false,
-        message: 'No user exists with that customer ID',
+        message: 'We could not find the user'
       });
     }
 
     const data = {
-      plotNumber,
-      plotDimensions,
-      estate,
-      estateAddress,
-      userId: findUser.id
+      userId: findUser.id,
     }
 
     const findPlot = await Plot.findOne({where: {plotNumber}});
 
-    if (findPlot) {
-      return res.status(400).send({
+    if (!findPlot) {
+      return res.status(404).send({
         success: false,
-        message: 'This plot has already been allocated to a user',
+        message: 'We could not find the plot'
       });
     }
 
-    await Plot.create(data);
+    await Plot.update(data, {where: {plotNumber}});
 
-    return res.status(201).send({
+    return res.status(200).send({
       success: true,
-      message: 'Plot created',
+      message: 'Plot reallocated',
       data
     });
   } catch (err) {
@@ -45,4 +41,4 @@ const CREATE = async (req, res) => {
   }
 };
 
-export default CREATE;
+export default REALLOCATE;

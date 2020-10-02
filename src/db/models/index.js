@@ -6,7 +6,6 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config');
-console.log(env)
 const envConfig = config[env];
 const db = {};
 const ssl = process.env.NODE_ENV === 'production';

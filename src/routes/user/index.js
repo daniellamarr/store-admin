@@ -8,9 +8,9 @@ import UPDATE from './update';
 const userRoutes = Router();
 
 userRoutes.post('/', CREATE);
-userRoutes.put('/:userId', UPDATE);
-userRoutes.delete('/:userId', DELETE);
+userRoutes.put('/:customerId', UPDATE);
+userRoutes.delete('/:customerId', DELETE);
 userRoutes.get('/', LIST);
-userRoutes.get('/:userId', READ);
+userRoutes.get('/:customerId', READ);
 
 export default userRoutes;

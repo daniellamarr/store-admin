@@ -2,10 +2,7 @@ import {User, Plot} from '../../db/models';
 
 const LIST = async (req, res) => {
   try {
-    const {customerId} = req.params;
-
     const users = await User.findAll({
-      where : {customerId},
       include: [
         {
           model: Plot,

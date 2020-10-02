@@ -5,7 +5,7 @@ const READ = async (req, res) => {
     const {customerId} = req.params;
 
     const user = await User.findOne({
-      where : {customerId},
+      where: {customerId},
       include: [
         {
           model: Plot,
@@ -13,6 +13,13 @@ const READ = async (req, res) => {
         }
       ]
     });
+
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: 'We could not find this customer'
+      });
+    }
 
     return res.status(200).send({
       success: true,
