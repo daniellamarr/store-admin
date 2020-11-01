@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "start": "node ./build/index.js",
     "start:dev": "nodemon --exec babel-node ./src/index.js",
-    "build": "babel -d build/ src",
+    "build": "babel -d build/ src && npm run db:migrate",
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:init": "sequelize init --force",
     "db:migrate": "sequelize db:migrate",
@@ -24,6 +27,7 @@
   },
   "homepage": "https://github.com/daniellamarr/store-admin#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
